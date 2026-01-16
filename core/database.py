@@ -1,0 +1,14 @@
+import os
+from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
+
+url: str = os.environ.get("SUPABASE_URL", "")
+key: str = os.environ.get("SUPABASE_KEY", "")
+
+if not url or not key:
+    raise ValueError("Supabase URL veya KEY bulunamadı! .env dosyanı kontrol et.")
+
+# Bağlantıyı oluştur ve dışarıya aç
+db_client: Client = create_client(url, key)
